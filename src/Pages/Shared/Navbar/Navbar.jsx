@@ -94,16 +94,21 @@ const Navbar = () => {
   );
   return (
     <nav
-      className={`navbar py-7 px-10 fixed top-0 z-30 transition-all duration-200 ${
-        scrolled ? "bg-white shadow-lg" : "bg-transparent"
+      className={`navbar px-5 md:px-10 fixed top-0 z-30 transition-all duration-200 ${
+        scrolled ? "bg-[#F9F9F9] shadow-lg py-5" : "bg-transparent py-7"
       }`}
     >
       <div className="navbar-start">
         <div className="dropdown z-30">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost bg-[#F9F9F9] lg:hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-white"
+              className={`h-5 w-5 text-blueDark
+              }`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

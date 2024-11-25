@@ -10,8 +10,14 @@ export default {
     // },
     textColor: {
       orange: '#FF6635',
+      // orangeGradient: {
+      //   background: "linear-gradient(to right, #911a80, #d42b45)",
+      //   backgroundClip: "text",
+      //   color: 'transparent'
+      // },
       blueDark: '#0E2048',
       white: '#fff',
+      gray: '#5a5a5a'
     },
     
     // it will set as default

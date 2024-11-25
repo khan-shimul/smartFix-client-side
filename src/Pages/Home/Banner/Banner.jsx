@@ -15,7 +15,7 @@ const Banner = () => {
   const images = [img_1, img_2, img_3];
 
   return (
-    <div className="relative h-[400px] md:h-[500] lg:h-screen overflow-hidden">
+    <div className="relative h-[400px] md:h-[550px] lg:h-screen overflow-hidden">
       {/* Image Sliders */}
       <Swiper
         modules={[Autoplay]}
@@ -50,7 +50,7 @@ const Banner = () => {
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="text-center px-5 lg:w-2/3">
           <h5 className="text-orange text-sm font-medium">Electronic Repair</h5>
-          <h1 className="text-white text-2xl lg:text-6xl font-bold my-3 md:my-6">
+          <h1 className="text-white text-2xl leading-9 lg:leading-tight md:text-3xl lg:text-6xl font-bold my-3 md:my-6">
             Rebuilt Your Old Electronic & Get The New Experience
           </h1>
           <p className="text-white text-xs md:text-lg lg:leading-7 font-light mb-6">
