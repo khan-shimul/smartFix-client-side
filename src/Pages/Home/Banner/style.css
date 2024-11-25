@@ -1,0 +1,11 @@
+@keyframes zoomIn {
+    0% {
+      transform: scale(1.1); /* Slightly larger to fit the container */
+    }
+    100% {
+      transform: scale(1.2); /* Subtle zoom effect */
+    }
+  }
+  .animate-zoom {
+    animation: zoomIn 5s linear infinite;
+  }
