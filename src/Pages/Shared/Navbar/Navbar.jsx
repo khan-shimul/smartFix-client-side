@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import ButtonOrange from "../ButtonOrange/ButtonOrange";
 import { useEffect, useState } from "react";
+import Login from "../../Registration/Login/Login";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   // Scroll handler for Navbar
   useEffect(() => {
@@ -146,10 +148,9 @@ const Navbar = () => {
           {navMenu}
         </ul>
       </div>
-      <div className="navbar-end">
-        <Link to="/login">
-          <ButtonOrange>Login</ButtonOrange>
-        </Link>
+      <div onClick={() => setIsOpen(true)} className="navbar-end">
+        <ButtonOrange>Login</ButtonOrange>
+        {isOpen && <Login isOpen={isOpen} setIsOpen={setIsOpen}></Login>}
       </div>
     </nav>
   );
