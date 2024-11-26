@@ -1,18 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import ButtonOrange from "../ButtonOrange/ButtonOrange";
 import { useEffect, useState } from "react";
-import Login from "../../Registration/Login/Login";
 import useAuth from "../../../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+
   const { user, logOUtUser } = useAuth();
 
   // Logout handler
   const handleLogout = () => {
-    setIsOpen(false);
     logOUtUser()
       .then(() => {
         toast.success("You're logged out");
@@ -115,7 +113,6 @@ const Navbar = () => {
         scrolled ? "bg-[#F9F9F9] shadow-lg py-5" : "bg-transparent py-7"
       }`}
     >
-      <Toaster position="top-right" reverseOrder={false} />
       <div className="navbar-start">
         <div className="dropdown z-30">
           <div
@@ -171,10 +168,9 @@ const Navbar = () => {
           </div>
         ) : (
           <div>
-            <div onClick={() => setIsOpen(true)}>
+            <Link to="/login">
               <ButtonOrange>Login</ButtonOrange>
-            </div>
-            {isOpen && <Login isOpen={isOpen} setIsOpen={setIsOpen}></Login>}
+            </Link>
           </div>
         )}
       </div>

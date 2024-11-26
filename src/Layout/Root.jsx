@@ -1,15 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
 import Footer from "../Pages/Shared/Footer/Footer";
 
 const Root = () => {
+  const location = useLocation();
+  const hideLayoutPath = ["/login", "/register"];
+  const shouldHideLayout = hideLayoutPath.includes(location.pathname);
   return (
     <div>
-      <Navbar />
+      {!shouldHideLayout && <Navbar />}
       <main>
         <Outlet />
       </main>
-      <Footer />
+      {!shouldHideLayout && <Footer />}
     </div>
   );
 };
