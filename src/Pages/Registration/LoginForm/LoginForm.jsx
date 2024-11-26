@@ -5,14 +5,12 @@ import { useState } from "react";
 import { IoLogoGithub } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../../hooks/useAuth";
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginForm = ({ setIsOpen }) => {
-  const authInfo = useAuth();
-  console.log("user", authInfo);
   const [showPassword, setShowPassword] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
-  console.log(isRegister);
-
+  const { registerUser, loginUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -20,16 +18,42 @@ const LoginForm = ({ setIsOpen }) => {
   } = useForm();
 
   const handleAuthentication = (data) => {
-    // setIsOpen(false);
+    const passwordRegex =
+      /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    // Handling Registration
     if (isRegister) {
-      console.log("Trying to Registration", data);
+      // if (!passwordRegex.test(data.password)) {
+      //   alert("Please provide one uppercase, number and special character");
+      //   return;
+      // }
+      registerUser(data.email, data.password)
+        .then((res) => {
+          if (res.user) {
+            toast.success("Successfully Registered");
+            setIsOpen(false);
+          }
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     } else {
-      console.log("Trying to login", data);
+      // Handling Login
+      loginUser(data.email, data.password)
+        .then((res) => {
+          if (res.user) {
+            toast.success("Successfully Login to your account");
+            setIsOpen(false);
+          }
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     }
   };
 
   return (
     <div className="pb-10">
+      <Toaster position="top-right" reverseOrder={false} />
       <form onSubmit={handleSubmit(handleAuthentication)}>
         {isRegister && (
           <>
@@ -107,7 +131,7 @@ const LoginForm = ({ setIsOpen }) => {
           <input
             className="mt-5 btn border-0  px-10 text-white bg-gradient-to-r from-[#FF6635] from-30% to-[#FF8A53] rounded-none transition-all duration-500 hover:-translate-y-2"
             type="submit"
-            value="Login"
+            value={isRegister ? "Register" : "Login"}
           />
         </div>
       </form>

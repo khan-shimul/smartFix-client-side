@@ -51,10 +51,12 @@ const Login = ({ isOpen, setIsOpen }) => {
                       className="text-lg font-medium leading-6 text-gray-900 flex flex-col justify-center items-center"
                     >
                       <FaCircleUser className="text-7xl text-orange" />
-                      <h2 className=" mt-2 font-semibold text-xl">LOGIN</h2>
+                      <h2 className=" mt-2 font-semibold text-xl">Welcome</h2>
                     </Dialog.Title>
                     <div className="mt-2 ">
-                      {isOpen && <LoginForm setIsOpen={setIsOpen} />}
+                      {isOpen && (
+                        <LoginForm isOpen={isOpen} setIsOpen={setIsOpen} />
+                      )}
                     </div>
                   </div>
                 </Dialog.Panel>

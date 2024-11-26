@@ -2,10 +2,25 @@ import { Link, NavLink } from "react-router-dom";
 import ButtonOrange from "../ButtonOrange/ButtonOrange";
 import { useEffect, useState } from "react";
 import Login from "../../Registration/Login/Login";
+import useAuth from "../../../hooks/useAuth";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logOUtUser } = useAuth();
+
+  // Logout handler
+  const handleLogout = () => {
+    setIsOpen(false);
+    logOUtUser()
+      .then(() => {
+        toast.success("You're logged out");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   // Scroll handler for Navbar
   useEffect(() => {
@@ -100,6 +115,7 @@ const Navbar = () => {
         scrolled ? "bg-[#F9F9F9] shadow-lg py-5" : "bg-transparent py-7"
       }`}
     >
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="navbar-start">
         <div className="dropdown z-30">
           <div
@@ -148,9 +164,19 @@ const Navbar = () => {
           {navMenu}
         </ul>
       </div>
-      <div onClick={() => setIsOpen(true)} className="navbar-end">
-        <ButtonOrange>Login</ButtonOrange>
-        {isOpen && <Login isOpen={isOpen} setIsOpen={setIsOpen}></Login>}
+      <div className="navbar-end">
+        {user ? (
+          <div onClick={handleLogout}>
+            <ButtonOrange>LOgout</ButtonOrange>
+          </div>
+        ) : (
+          <div>
+            <div onClick={() => setIsOpen(true)}>
+              <ButtonOrange>Login</ButtonOrange>
+            </div>
+            {isOpen && <Login isOpen={isOpen} setIsOpen={setIsOpen}></Login>}
+          </div>
+        )}
       </div>
     </nav>
   );
