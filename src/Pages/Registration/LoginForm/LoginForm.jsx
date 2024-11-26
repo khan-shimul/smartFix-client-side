@@ -4,10 +4,14 @@ import { FaFacebookF, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
 import { IoLogoGithub } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../../hooks/useAuth";
 
 const LoginForm = ({ setIsOpen }) => {
+  const authInfo = useAuth();
+  console.log("user", authInfo);
   const [showPassword, setShowPassword] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
+  console.log(isRegister);
 
   const {
     register,
@@ -124,7 +128,7 @@ const LoginForm = ({ setIsOpen }) => {
           <h2 className="text-center text-sm mt-4 text-gray">
             Already have an account?{" "}
             <span
-              onClick={() => setIsRegister(false)}
+              onClick={() => setIsRegister(!isRegister)}
               className="text-orange cursor-pointer"
             >
               Login
@@ -134,7 +138,7 @@ const LoginForm = ({ setIsOpen }) => {
           <h2 className="text-center text-sm mt-4 text-gray">
             Do not have account?{" "}
             <span
-              onClick={() => setIsRegister(true)}
+              onClick={() => setIsRegister(!isRegister)}
               className="text-orange cursor-pointer"
             >
               Register
