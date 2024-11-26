@@ -10,12 +10,14 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { loginUser } = useAuth();
+  const { loginUser, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const {
     register,
     handleSubmit,
@@ -28,12 +30,23 @@ const Login = () => {
       .then((res) => {
         if (res.user) {
           toast.success("Successfully Login to your account");
-          navigate("/");
+          navigate(location.state ? location.state.pathname : "/");
         }
       })
       .catch((error) => {
         toast.error(error.message);
       });
+  };
+  // Google Login Handler
+  const handleGoogleLogin = () => {
+    loginWithGoogle()
+      .then((res) => {
+        if (res.user) {
+          toast.success("Login success to your account");
+          navigate(location.state ? location.state.pathname : "/");
+        }
+      })
+      .catch((error) => toast.error(error.message));
   };
 
   return (
@@ -120,7 +133,10 @@ const Login = () => {
                   <button className="btn text-blueDark w-full lg:w-1/2">
                     <FaFacebookF /> Continue with Facebook
                   </button>
-                  <button className="btn text-blueDark w-full lg:w-1/2">
+                  <button
+                    onClick={handleGoogleLogin}
+                    className="btn text-blueDark w-full lg:w-1/2"
+                  >
                     <FcGoogle /> Continue with Google
                   </button>
                   <button className="btn text-blueDark w-full lg:w-1/2">

@@ -56,6 +56,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       {/* Dashboard */}
+      {/* {user && ( */}
       <li>
         <details>
           <summary className="transition-all duration-300 hover:text-orange">
@@ -105,6 +106,7 @@ const Navbar = () => {
           </ul>
         </details>
       </li>
+      {/* )} */}
     </>
   );
   return (

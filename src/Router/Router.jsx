@@ -9,6 +9,7 @@ import ManageService from "../Pages/ManageService/ManageService";
 import ServiceTodo from "../Pages/ServiceTodo/ServiceTodo";
 import Login from "../Pages/Registration/Login/Login";
 import Register from "../Pages/Registration/Register/Register";
+import ProtectRouter from "./ProtectRouter";
 
 export const Router = createBrowserRouter([
   {
@@ -26,19 +27,35 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/add-service",
-        element: <AddService />,
+        element: (
+          <ProtectRouter>
+            <AddService />
+          </ProtectRouter>
+        ),
       },
       {
         path: "/manage-service",
-        element: <ManageService />,
+        element: (
+          <ProtectRouter>
+            <ManageService />
+          </ProtectRouter>
+        ),
       },
       {
         path: "/booked-service",
-        element: <BookedService />,
+        element: (
+          <ProtectRouter>
+            <BookedService />
+          </ProtectRouter>
+        ),
       },
       {
         path: "/service-to-do",
-        element: <ServiceTodo />,
+        element: (
+          <ProtectRouter>
+            <ServiceTodo />
+          </ProtectRouter>
+        ),
       },
       {
         path: "/login",
