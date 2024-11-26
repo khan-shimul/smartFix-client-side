@@ -16,7 +16,7 @@ const Navbar = () => {
         toast.success("You're logged out");
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(error.message);
       });
   };
 
@@ -56,57 +56,57 @@ const Navbar = () => {
         </NavLink>
       </li>
       {/* Dashboard */}
-      {/* {user && ( */}
-      <li>
-        <details>
-          <summary className="transition-all duration-300 hover:text-orange">
-            Dashboard
-          </summary>
-          <ul className="p-2 w-[180px] text-blueDark">
-            <li className="transition-all duration-300 hover:text-orange text-sm">
-              <NavLink
-                to="/add-service"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-orange" : ""
-                }
-              >
-                Add Service
-              </NavLink>
-            </li>
-            <li className="transition-all duration-300 hover:text-orange text-sm">
-              <NavLink
-                to="/manage-service"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-orange" : ""
-                }
-              >
-                Manage Service
-              </NavLink>
-            </li>
-            <li className="transition-all duration-300 hover:text-orange text-sm">
-              <NavLink
-                to="/booked-service"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-orange" : ""
-                }
-              >
-                Booked-Services
-              </NavLink>
-            </li>
-            <li className="transition-all duration-300 hover:text-orange text-sm">
-              <NavLink
-                to="/service-to-do"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-orange" : ""
-                }
-              >
-                Service-To-Do
-              </NavLink>
-            </li>
-          </ul>
-        </details>
-      </li>
-      {/* )} */}
+      {user && (
+        <li>
+          <details>
+            <summary className="transition-all duration-300 hover:text-orange">
+              Dashboard
+            </summary>
+            <ul className="p-2 w-[180px] text-blueDark">
+              <li className="transition-all duration-300 hover:text-orange text-sm">
+                <NavLink
+                  to="/add-service"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-orange" : ""
+                  }
+                >
+                  Add Service
+                </NavLink>
+              </li>
+              <li className="transition-all duration-300 hover:text-orange text-sm">
+                <NavLink
+                  to="/manage-service"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-orange" : ""
+                  }
+                >
+                  Manage Service
+                </NavLink>
+              </li>
+              <li className="transition-all duration-300 hover:text-orange text-sm">
+                <NavLink
+                  to="/booked-service"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-orange" : ""
+                  }
+                >
+                  Booked-Services
+                </NavLink>
+              </li>
+              <li className="transition-all duration-300 hover:text-orange text-sm">
+                <NavLink
+                  to="/service-to-do"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-orange" : ""
+                  }
+                >
+                  Service-To-Do
+                </NavLink>
+              </li>
+            </ul>
+          </details>
+        </li>
+      )}
     </>
   );
   return (
@@ -173,9 +173,9 @@ const Navbar = () => {
             >
               <div className="w-10 rounded-full">
                 <img
-                  title={user.email}
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  title={user?.displayName}
+                  alt={user?.displayName}
+                  src={user?.photoURL}
                 />
               </div>
             </div>

@@ -16,14 +16,14 @@ import toast from "react-hot-toast";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { registerUser } = useAuth();
+  const { setUser, registerUser, setUserPhotoAndName } = useAuth();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  // User Register Handler
   const handleRegister = (data) => {
     const { name, photoUrl, email, password, confirmPassword } = data;
     const passwordRegex =
@@ -40,7 +40,13 @@ const Register = () => {
       .then((res) => {
         if (res.user) {
           toast.success("Successfully register your account");
-          navigate("/");
+          //   Update user photo and name
+          setUserPhotoAndName(name, photoUrl)
+            .then(() => {
+              setUser({ displayName: name, photoURL: photoUrl });
+              navigate("/");
+            })
+            .catch((error) => console.log(error.message));
         }
       })
       .catch((error) => toast.error(error.message));
