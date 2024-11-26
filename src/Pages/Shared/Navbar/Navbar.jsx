@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import ButtonOrange from "../ButtonOrange/ButtonOrange";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -163,8 +163,36 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <div onClick={handleLogout}>
-            <ButtonOrange>LOgout</ButtonOrange>
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img
+                  title={user.email}
+                  alt="Tailwind CSS Navbar component"
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a className="justify-between mt-3">Profile</a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li className="mt-2">
+                <div onClick={handleLogout}>
+                  <ButtonOrange>Logout</ButtonOrange>
+                </div>
+              </li>
+            </ul>
           </div>
         ) : (
           <div>

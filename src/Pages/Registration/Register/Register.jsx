@@ -9,15 +9,15 @@ import {
 import { IoLogoGithub } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { loginUser } = useAuth();
-
+  const { registerUser } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -25,16 +25,32 @@ const Register = () => {
   } = useForm();
 
   const handleRegister = (data) => {
+    const { name, photoUrl, email, password, confirmPassword } = data;
     const passwordRegex =
       /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    console.log(data);
+    if (password !== confirmPassword) {
+      return toast.error("Password and confirm password does not match");
+    }
+    // if (!passwordRegex.test(password)) {
+    //   return toast.error(
+    //     "Password should have at least 8 character, one upper case and one special character"
+    //   );
+    // }
+    registerUser(email, password)
+      .then((res) => {
+        if (res.user) {
+          toast.success("Successfully register your account");
+          navigate("/");
+        }
+      })
+      .catch((error) => toast.error(error.message));
   };
 
   return (
     <div>
       <div className="flex flex-col lg:flex-row-reverse gap-0 lg:gap-6">
         <div className="bg-gradient-to-t from-[#FF6635] from-40% to-[#FF8A53] flex flex-col justify-center items-center lg:w-1/2 ">
-          <div className="p-10 text-center text-white lg:-mt-48">
+          <div className="p-10 text-center text-white lg:-mt-52">
             <h3 className="font-bold text-2xl md:text-4xl">
               Welcome to Smart Fix
             </h3>
@@ -156,9 +172,9 @@ const Register = () => {
 
                 <div className="flex justify-center">
                   <input
-                    className="mt-5 btn border-0  px-10 text-white bg-gradient-to-r from-[#FF6635] from-30% to-[#FF8A53] rounded-none transition-all duration-500 hover:-translate-y-2 w-full"
+                    className="mt-8 btn border-0  px-10 text-white bg-gradient-to-r from-[#FF6635] from-30% to-[#FF8A53] rounded-none transition-all duration-500 hover:-translate-y-2 w-full"
                     type="submit"
-                    value={"Login"}
+                    value={"Register"}
                   />
                 </div>
               </form>

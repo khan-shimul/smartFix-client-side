@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import {
   FaCircleUser,
@@ -11,27 +10,25 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { loginUser } = useAuth();
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  // Login Handler
   const handleLogin = (data) => {
-    const passwordRegex =
-      /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    // Handling Registration
-    // Handling Login
     loginUser(data.email, data.password)
       .then((res) => {
         if (res.user) {
           toast.success("Successfully Login to your account");
+          navigate("/");
         }
       })
       .catch((error) => {
@@ -137,11 +134,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
-
-Login.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  setIsOpen: PropTypes.func.isRequired,
 };
 
 export default Login;
