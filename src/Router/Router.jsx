@@ -10,6 +10,7 @@ import ServiceTodo from "../Pages/ServiceTodo/ServiceTodo";
 import Login from "../Pages/Registration/Login/Login";
 import Register from "../Pages/Registration/Register/Register";
 import ProtectRouter from "./ProtectRouter";
+import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 
 export const Router = createBrowserRouter([
   {
@@ -25,6 +26,16 @@ export const Router = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
+      },
+      {
+        path: "/service-details/:id",
+        element: (
+          <ProtectRouter>
+            <ServiceDetails />
+          </ProtectRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/service/${params.id}`),
       },
       {
         path: "/add-service",
