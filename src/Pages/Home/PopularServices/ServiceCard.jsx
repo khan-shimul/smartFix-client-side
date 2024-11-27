@@ -14,7 +14,7 @@ const ServiceCard = ({ service }) => {
       <div className="relative">
         <figure className="border-2 border-orange-600 ">
           <img
-            className="w-full transition-all duration-500 hover:scale-110"
+            className="w-full transition-all duration-700 cursor-pointer hover:scale-110"
             src={imgURL}
             alt="Shoes"
           />

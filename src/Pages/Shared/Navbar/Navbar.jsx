@@ -23,7 +23,7 @@ const Navbar = () => {
   // Scroll handler for Navbar
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 450) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -111,8 +111,10 @@ const Navbar = () => {
   );
   return (
     <nav
-      className={`navbar px-5 md:px-10 fixed top-0 z-30 transition-all duration-200 ${
-        scrolled ? "bg-[#F9F9F9] shadow-lg py-5" : "bg-transparent py-7"
+      className={`navbar px-5 md:px-10 top-0 z-30 ease-out transition-all duration-500 ${
+        scrolled
+          ? "fixed bg-[#F9F9F9] shadow-lg py-5"
+          : "bg-transparent py-7 absolute "
       }`}
     >
       <div className="navbar-start">
