@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import ServiceCard from "./ServiceCard";
+import PopularServiceCard from "./PopularServiceCard";
 
 const PopularServices = () => {
   const loadedServices = useLoaderData();
@@ -19,7 +19,7 @@ const PopularServices = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
         {loadedServices.slice(0, 6).map((service) => (
-          <ServiceCard key={service.id} service={service} />
+          <PopularServiceCard key={service._id} service={service} />
         ))}
       </div>
     </section>

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const ServiceCard = ({ service }) => {
+const PopularServiceCard = ({ service }) => {
   const {
     serviceName,
     imgURL,
@@ -12,11 +12,11 @@ const ServiceCard = ({ service }) => {
   return (
     <div className="card rounded-none bg-base-100 shadow-xl">
       <div className="relative">
-        <figure className="border-2 border-orange-600 ">
+        <figure className="border-2 border-orange-600">
           <img
             className="w-full transition-all duration-700 cursor-pointer hover:scale-110"
             src={imgURL}
-            alt="Shoes"
+            alt={serviceName}
           />
         </figure>
         <div className="w-full absolute -bottom-6 flex justify-center">
@@ -31,7 +31,7 @@ const ServiceCard = ({ service }) => {
             <img
               className="w-12 h-12 rounded-full"
               src={providerImage}
-              alt=""
+              alt={providerName}
             />
             <div>
               <p className="text-sm text-orange">Service Provider</p>
@@ -54,8 +54,8 @@ const ServiceCard = ({ service }) => {
   );
 };
 
-ServiceCard.propTypes = {
+PopularServiceCard.propTypes = {
   service: PropTypes.object,
 };
 
-export default ServiceCard;
+export default PopularServiceCard;

@@ -1,19 +1,14 @@
 import PropTypes from "prop-types";
 import useAuth from "../hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
+import Spinner from "../Pages/Shared/Spinner/Spinner";
 
 const ProtectRouter = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
-
-  if (loading) {
-    return (
-      <span className="loading loading-spinner loading-lg flex mx-auto py-60"></span>
-    );
-  }
-  if (user) {
-    return children;
-  }
+  // Conditionally Rendering
+  if (loading) return <Spinner />;
+  if (user) return children;
   return <Navigate to="/login" state={location} />;
 };
 
