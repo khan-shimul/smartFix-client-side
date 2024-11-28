@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import imgBanner from "../../../assets/Images/Banner/shared.jpg";
 import PropTypes from "prop-types";
+import { FaChevronRight } from "react-icons/fa6";
 
 const PageHeader = ({ children }) => {
   return (
@@ -14,13 +15,14 @@ const PageHeader = ({ children }) => {
       <div className="absolute inset-0 text-white flex mt-24 md:mt-36 lg:mt-56 justify-center">
         <div>
           <h2 className="font-semibold text-3xl">{children}</h2>
-          <p className="text-sm my-3 text-center">
+          <p className="text-sm my-3 text-center flex items-center justify-center gap-2">
             <Link to="/">
               <span className="cursor-pointer transition-all duration-300 hover:text-orange">
                 Home
               </span>
             </Link>{" "}
-            &gt; {children}
+            <FaChevronRight className="text-xs" />{" "}
+            <span className="text-orange">{children}</span>
           </p>
         </div>
       </div>
