@@ -17,13 +17,15 @@ const ServiceCard = ({ service }) => {
     <div className="card card-side bg-base-100 shadow-xl mb-10">
       <div className="flex flex-col lg:flex-row w-full">
         <div className="lg:w-2/5">
-          <figure className="lg:w-[500px] rounded-t-2xl lg:rounded-tr-none lg:rounded-s-2xl border-2 border-orange-600 ">
-            <img
-              className="transition-all duration-700 cursor-pointer hover:scale-110"
-              src={imgURL}
-              alt={serviceName}
-            />
-          </figure>
+          <Link to={`/service-details/${_id}`}>
+            <figure className="lg:w-[500px] rounded-t-2xl lg:rounded-tr-none lg:rounded-s-2xl border-2 border-orange-600 ">
+              <img
+                className="transition-all duration-700 cursor-pointer hover:scale-110"
+                src={imgURL}
+                alt={serviceName}
+              />
+            </figure>
+          </Link>
         </div>
         <div className="card-body lg:p-10">
           <div className="flex items-center justify-between">

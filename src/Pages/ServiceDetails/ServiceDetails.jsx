@@ -18,9 +18,9 @@ const ServiceDetails = () => {
     <div className="min-h-screen bg-gray-50">
       <PageHeader>Service Details</PageHeader>
       <div className="max-w-7xl mx-auto py-14 px-5 md:px-7">
-        <div className="flex bg-white flex-col lg:flex-row lg:items-center gap-14 border">
-          <div className="lg:w-1/2 lg:h-[450px]">
-            <img className="w-full h-full" src={imgURL} alt="" />
+        <div className="flex bg-white flex-col lg:flex-row lg:items-center gap-14 rounded-lg shadow-lg">
+          <div className="lg:w-1/2 lg:h-[470px]">
+            <img className="w-full h-full rounded-lg" src={imgURL} alt="" />
           </div>
           <div className="lg:w-1/2 pb-7 md:pb-10 md:pt-10 pr-5 md:pr-10 pl-6 lg:pl-0">
             <div className="flex items-center justify-between">
