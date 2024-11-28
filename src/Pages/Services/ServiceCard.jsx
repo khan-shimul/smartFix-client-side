@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 import { MdOutlineLocationOn } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
   const {
+    _id,
     imgURL,
     serviceName,
     price,
@@ -49,7 +51,7 @@ const ServiceCard = ({ service }) => {
           <p className="text-gray text-sm leading-6">
             {description.slice(0, 100)}...{" "}
             <span className="cursor-pointer text-orange font-semibold ml-1 btn-link">
-              View Details
+              <Link to={`/service-details/${_id}`}>View Details</Link>
             </span>
           </p>
           <div className="flex items-center gap-3">

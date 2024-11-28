@@ -14,15 +14,15 @@ const PopularServiceCard = ({ service }) => {
   return (
     <div className="card rounded-none bg-base-100 shadow-xl">
       <div className="relative">
-        <figure className="border-2 border-orange-600">
-          <Link to={`/service-details/${_id}`}>
+        <Link to={`/service-details/${_id}`}>
+          <figure className="border-2 border-orange-600">
             <img
               className="w-full transition-all duration-700 cursor-pointer hover:scale-110"
               src={imgURL}
               alt={serviceName}
             />
-          </Link>
-        </figure>
+          </figure>
+        </Link>
         <div className="w-full absolute -bottom-6 flex justify-center">
           <h2 className="w-2/3 bg-gray-100 text-center p-4 font-semibold text-blueDark">
             {serviceName}
