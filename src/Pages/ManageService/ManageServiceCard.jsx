@@ -4,6 +4,8 @@ import ButtonOrange from "../Shared/ButtonOrange/ButtonOrange";
 import UpdateServiceFormModal from "./UpdateServiceFormModal";
 import axios from "axios";
 import { useState } from "react";
+import swal from "sweetalert";
+import toast from "react-hot-toast";
 
 const ManageServiceCard = ({ service }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,11 +20,35 @@ const ManageServiceCard = ({ service }) => {
     providerImage,
     providerName,
   } = service;
-  //   Handle Update
-  const handleUpdateService = async (id) => {
+  //   Service Update Handler
+  const handleLoadService = async (id) => {
     setIsOpen(true);
     const response = await axios.get(`http://localhost:5000/service/${id}`);
     setManageService(response.data);
+  };
+  // Service Delete Handler
+  const handleDeleteService = (id) => {
+    swal({
+      title: "Are you sure you?",
+      text: "This action is permanent and cannot be undone.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(`http://localhost:5000/service/${id}`)
+          .then((response) => {
+            if (response.data.deletedCount) {
+              toast.success("Your service has been deleted");
+            }
+          })
+          .catch((error) => toast.error(error));
+        // swal("Poof! Your imaginary file has been deleted!", {
+        //   icon: "success",
+        // });
+      }
+    });
   };
   return (
     <div className="card card-side bg-base-100 shadow-xl mb-10">
@@ -65,12 +91,14 @@ const ManageServiceCard = ({ service }) => {
           <p className="text-gray text-sm leading-6">{description}</p>
           <div className="flex flex-col md:flex-row gap-3 md:gap-8 mt-5">
             <button
-              onClick={() => handleUpdateService(_id)}
-              className="btn btn-outline btn-info px-10"
+              onClick={() => handleLoadService(_id)}
+              className="btn rounded-none btn-outline btn-info px-10"
             >
               Update
             </button>
-            <ButtonOrange>Delete</ButtonOrange>
+            <div onClick={() => handleDeleteService(_id)}>
+              <ButtonOrange>Delete</ButtonOrange>
+            </div>
           </div>
         </div>
       </div>
