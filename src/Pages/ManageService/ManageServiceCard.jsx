@@ -4,10 +4,8 @@ import ButtonOrange from "../Shared/ButtonOrange/ButtonOrange";
 import UpdateServiceFormModal from "./UpdateServiceFormModal";
 import axios from "axios";
 import { useState } from "react";
-import swal from "sweetalert";
-import toast from "react-hot-toast";
 
-const ManageServiceCard = ({ service }) => {
+const ManageServiceCard = ({ service, handleDeleteService }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [manageService, setManageService] = useState(null);
   const {
@@ -26,30 +24,7 @@ const ManageServiceCard = ({ service }) => {
     const response = await axios.get(`http://localhost:5000/service/${id}`);
     setManageService(response.data);
   };
-  // Service Delete Handler
-  const handleDeleteService = (id) => {
-    swal({
-      title: "Are you sure you?",
-      text: "This action is permanent and cannot be undone.",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        axios
-          .delete(`http://localhost:5000/service/${id}`)
-          .then((response) => {
-            if (response.data.deletedCount) {
-              toast.success("Your service has been deleted");
-            }
-          })
-          .catch((error) => toast.error(error));
-        // swal("Poof! Your imaginary file has been deleted!", {
-        //   icon: "success",
-        // });
-      }
-    });
-  };
+
   return (
     <div className="card card-side bg-base-100 shadow-xl mb-10">
       <div className="flex flex-col lg:flex-row w-full">
@@ -115,6 +90,7 @@ const ManageServiceCard = ({ service }) => {
 
 ManageServiceCard.propTypes = {
   service: PropTypes.object.isRequired,
+  handleDeleteService: PropTypes.func.isRequired,
 };
 
 export default ManageServiceCard;

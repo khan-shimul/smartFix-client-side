@@ -22,7 +22,7 @@ const UpdateServiceFormModal = ({ isOpen, setIsOpen, manageService }) => {
         toast.success("Your service has been updated.");
         setTimeout(() => {
           window.location.reload();
-        }, 3000);
+        }, 2000);
       }
     } catch (error) {
       toast.error("Something went wrong", error);
