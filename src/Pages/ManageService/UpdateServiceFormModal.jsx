@@ -4,6 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import swal from "sweetalert";
 
 const UpdateServiceFormModal = ({ isOpen, setIsOpen, manageService }) => {
   const { _id, imgURL, serviceName, price, serviceArea, description } =
@@ -19,10 +20,9 @@ const UpdateServiceFormModal = ({ isOpen, setIsOpen, manageService }) => {
         updateService
       );
       if (response.data.modifiedCount) {
-        toast.success("Your service has been updated.");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        swal("Good job!", "Your service has been updated.", "success").then(
+          () => window.location.reload()
+        );
       }
     } catch (error) {
       toast.error("Something went wrong", error);
