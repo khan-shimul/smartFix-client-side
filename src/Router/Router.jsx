@@ -4,13 +4,13 @@ import Error from "../Pages/Shared/Error/Error";
 import Home from "../Pages/Home/Home/Home";
 import Services from "../Pages/Services/Services";
 import AddService from "../Pages/AddService/AddService";
-import BookedService from "../Pages/BookedService/BookedService";
 import ManageService from "../Pages/ManageService/ManageService";
 import ServiceTodo from "../Pages/ServiceTodo/ServiceTodo";
 import Login from "../Pages/Registration/Login/Login";
 import Register from "../Pages/Registration/Register/Register";
 import ProtectRouter from "./ProtectRouter";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
+import BookedServices from "../Pages/BookedServices/BookedServices";
 
 export const Router = createBrowserRouter([
   {
@@ -57,7 +57,7 @@ export const Router = createBrowserRouter([
         path: "/booked-service",
         element: (
           <ProtectRouter>
-            <BookedService />
+            <BookedServices />
           </ProtectRouter>
         ),
       },

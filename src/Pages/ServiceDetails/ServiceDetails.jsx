@@ -2,9 +2,15 @@ import { useLoaderData } from "react-router-dom";
 import PageHeader from "../Shared/PageHeader/PageHeader";
 import { MdOutlineLocationOn } from "react-icons/md";
 import ButtonOrange from "../Shared/ButtonOrange/ButtonOrange";
+import axios from "axios";
+import useAuth from "../../hooks/useAuth";
+import swal from "sweetalert";
 
 const ServiceDetails = () => {
+  const { user } = useAuth();
+  const service = useLoaderData();
   const {
+    _id,
     imgURL,
     serviceName,
     price,
@@ -12,7 +18,29 @@ const ServiceDetails = () => {
     description,
     providerImage,
     providerName,
-  } = useLoaderData();
+  } = service;
+  // Booked Service Handler
+  const handleBookedService = async () => {
+    const bookingService = {
+      ...service,
+      userName: user.displayName,
+      userEmail: user.email,
+      userPhoto: user.photoURL,
+      status: "pending",
+    };
+    // Booked service send to server
+    const response = await axios.post(
+      "http://localhost:5000/booking-service",
+      bookingService
+    );
+    if (response.data.insertedId) {
+      swal(
+        "Thank you for booking with Smart Fix!",
+        "Your appointment is confirmed for [Date] at [Time]. We’re excited to serve you and ensure everything is perfect.",
+        "success"
+      );
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -49,9 +77,9 @@ const ServiceDetails = () => {
               {serviceName}
             </h2>
             <p className="text-gray text-lg leading-8">{description}</p>
-            <div className="mt-6">
+            <span onClick={() => handleBookedService(_id)} className="mt-6">
               <ButtonOrange>Book Now</ButtonOrange>
-            </div>
+            </span>
           </div>
         </div>
       </div>
