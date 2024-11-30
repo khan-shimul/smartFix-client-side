@@ -127,7 +127,7 @@ const AddService = () => {
                 <input
                   className="mt-8 btn border-0  px-10 text-white bg-gradient-to-r from-[#FF6635] from-30% to-[#FF8A53] rounded-none transition-all duration-500 hover:-translate-y-2 w-full"
                   type="submit"
-                  value={"Login"}
+                  value={"Add Service"}
                 />
               </div>
             </form>

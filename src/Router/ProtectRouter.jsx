@@ -8,7 +8,6 @@ const ProtectRouter = ({ children }) => {
   const location = useLocation();
   // Conditionally Rendering
   if (loading) return <Spinner />;
-  console.log("User:", user, "loading", loading);
   if (user) return children;
   return <Navigate to="/login" state={location} />;
 };
