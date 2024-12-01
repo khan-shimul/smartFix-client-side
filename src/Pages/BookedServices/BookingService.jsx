@@ -44,7 +44,7 @@ const BookingService = ({
           </div>
         </div>
       </td>
-      <td>{status}</td>
+      <td className="capitalize ">{status}</td>
       <th>
         <button
           onClick={() => handleRemoveBookingService(_id)}
