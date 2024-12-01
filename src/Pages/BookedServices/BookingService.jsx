@@ -1,12 +1,7 @@
 import PropTypes from "prop-types";
 
-const BookingService = ({
-  bookingService,
-  idx,
-  handleRemoveBookingService,
-}) => {
+const BookingService = ({ bookingService, idx }) => {
   const {
-    _id,
     imgURL,
     serviceName,
     price,
@@ -44,15 +39,7 @@ const BookingService = ({
           </div>
         </div>
       </td>
-      <td className="capitalize ">{status}</td>
-      <th>
-        <button
-          onClick={() => handleRemoveBookingService(_id)}
-          className="btn btn-ghost btn-xs text-orange"
-        >
-          Remove
-        </button>
-      </th>
+      <td className="capitalize text-orange font-semibold">{status}</td>
     </tr>
   );
 };
@@ -60,7 +47,6 @@ const BookingService = ({
 BookingService.propTypes = {
   bookingService: PropTypes.object.isRequired,
   idx: PropTypes.number.isRequired,
-  handleRemoveBookingService: PropTypes.func.isRequired,
 };
 
 export default BookingService;

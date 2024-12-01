@@ -12,6 +12,7 @@ const TodoService = ({ todoService, idx, handleRemoveTodoService }) => {
     userEmail,
     userPhoto,
   } = todoService;
+
   const [selectedStatus, setSelectedStatus] = useState(status);
   const handleStatus = (e) => {
     setSelectedStatus(e.target.value);
