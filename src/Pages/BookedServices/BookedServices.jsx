@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import PageHeader from "../Shared/PageHeader/PageHeader";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
@@ -6,10 +6,12 @@ import Spinner from "../Shared/Spinner/Spinner";
 import { Link } from "react-router-dom";
 import ButtonOrange from "../Shared/ButtonOrange/ButtonOrange";
 import BookingService from "./BookingService";
+import swal from "sweetalert";
 
 const BookedServices = () => {
+  const queryClient = useQueryClient();
   const { user } = useAuth();
-  const {
+  let {
     isPending,
     error,
     data: bookingServices,
@@ -22,8 +24,32 @@ const BookedServices = () => {
       return response.data;
     },
   });
-  console.log(isPending, error, bookingServices);
+  // handling pending and error
   if (isPending) return <Spinner />;
+  if (error) return <Spinner />;
+  // Booking Service Remove Handler
+  const handleRemoveBookingService = async (id) => {
+    const response = await axios.delete(
+      `http://localhost:5000/booking-service/${id}`
+    );
+    if (response.data.deletedCount) {
+      swal(
+        "Service Removed",
+        "You have successfully canceled this booking.",
+        "success"
+      );
+      // Set new booking services using query client
+      queryClient.setQueryData(
+        ["bookingServices"],
+        (previousBookingServices) => {
+          const remaining = previousBookingServices.filter(
+            (bookingService) => bookingService._id !== id
+          );
+          return remaining;
+        }
+      );
+    }
+  };
   return (
     <div className="bg-gray-50">
       <PageHeader>Booked Service</PageHeader>
@@ -75,6 +101,7 @@ const BookedServices = () => {
                         idx={idx}
                         key={bookingService._id}
                         bookingService={bookingService}
+                        handleRemoveBookingService={handleRemoveBookingService}
                       />
                     ))}
                   </tbody>

@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import PageHeader from "../Shared/PageHeader/PageHeader";
 import { MdOutlineLocationOn } from "react-icons/md";
 import ButtonOrange from "../Shared/ButtonOrange/ButtonOrange";
@@ -9,6 +9,7 @@ import swal from "sweetalert";
 const ServiceDetails = () => {
   const { user } = useAuth();
   const service = useLoaderData();
+  const navigate = useNavigate();
   const {
     _id,
     imgURL,
@@ -35,10 +36,10 @@ const ServiceDetails = () => {
     );
     if (response.data.insertedId) {
       swal(
-        "Thank you for booking with Smart Fix!",
-        "Your appointment is confirmed for [Date] at [Time]. We’re excited to serve you and ensure everything is perfect.",
+        "Thank you for booking!",
+        "Your appointment is confirmed. Stay with Smart Fix",
         "success"
-      );
+      ).then(() => navigate("/booked-service"));
     }
   };
 
