@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 
-const TodoService = ({ todoService, idx, handleRemoveTodoService }) => {
+const TodoService = ({
+  todoService,
+  idx,
+  handleStatus,
+  handleRemoveTodoService,
+}) => {
   const {
     _id,
     imgURL,
@@ -12,11 +16,6 @@ const TodoService = ({ todoService, idx, handleRemoveTodoService }) => {
     userEmail,
     userPhoto,
   } = todoService;
-
-  const [selectedStatus, setSelectedStatus] = useState(status);
-  const handleStatus = (e) => {
-    setSelectedStatus(e.target.value);
-  };
 
   return (
     <tr>
@@ -48,24 +47,27 @@ const TodoService = ({ todoService, idx, handleRemoveTodoService }) => {
         </div>
       </td>
       <td>
-        <select
-          value={selectedStatus}
-          onChange={handleStatus}
-          className="select select-ghost"
-        >
-          <option
-            value={selectedStatus}
-            className="capitalize"
-            disabled
-            selected
-          >
-            {selectedStatus}
-          </option>
-          <option value="working" className="capitalize">
-            working
-          </option>
-          <option className="completed">completed</option>
-        </select>
+        <div>
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <details>
+                <summary className="capitalize">{status}</summary>
+                <ul className="p-2 z-20">
+                  <li className="z-50">
+                    <button onClick={() => handleStatus("working", `${_id}`)}>
+                      Working
+                    </button>
+                  </li>
+                  <li>
+                    <button onClick={() => handleStatus("completed", `${_id}`)}>
+                      Completed
+                    </button>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
       </td>
       <th>
         <button
@@ -95,6 +97,7 @@ const TodoService = ({ todoService, idx, handleRemoveTodoService }) => {
 TodoService.propTypes = {
   todoService: PropTypes.object.isRequired,
   idx: PropTypes.number.isRequired,
+  handleStatus: PropTypes.func.isRequired,
   handleRemoveTodoService: PropTypes.func.isRequired,
 };
 

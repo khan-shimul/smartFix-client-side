@@ -73,8 +73,8 @@ const BookedServices = () => {
                   <tbody>
                     {bookingServices.map((bookingService, idx) => (
                       <BookingService
-                        idx={idx}
                         key={bookingService._id}
+                        idx={idx}
                         bookingService={bookingService}
                       />
                     ))}

@@ -9,7 +9,6 @@ import swal from "sweetalert";
 const ToDoServices = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
-
   const { isPending, data: todoServices } = useQuery({
     queryKey: ["todoServices"],
     queryFn: async () => {
@@ -20,6 +19,29 @@ const ToDoServices = () => {
     },
   });
   if (isPending) return <Spinner />;
+  // Status Change Handler
+  const handleStatus = async (status, id) => {
+    const newStatus = { status };
+    const response = await axios.patch(
+      `http://localhost:5000/services-to-do/${id}`,
+      newStatus
+    );
+    if (response.data.modifiedCount) {
+      swal("Todo-Task", "Successfully modified", "success");
+      queryClient.setQueryData(["todoServices"], (previousTodoServices) => {
+        const remaining = previousTodoServices.filter(
+          (item) => item._id !== id
+        );
+        const currentService = previousTodoServices.find(
+          (item) => item._id === id
+        );
+        currentService.status = status;
+        const newTodoServices = [...remaining, currentService];
+        // console.log(newTodoServices);
+        return newTodoServices;
+      });
+    }
+  };
   // Booking Service Remove Handler
   const handleRemoveTodoService = async (id) => {
     const response = await axios.delete(
@@ -44,7 +66,7 @@ const ToDoServices = () => {
     <div className="bg-gray-50">
       <PageHeader>Service To-Do</PageHeader>
       <section className="max-w-7xl mx-auto">
-        <div className="my-10 px-5 md:px-10">
+        <div className="mt-12 px-5 md:px-10">
           {!todoServices.length ? (
             <>
               <h2 className="text-3xl text-orange text-center font-semibold">
@@ -61,13 +83,13 @@ const ToDoServices = () => {
               <h2 className="text-3xl text-orange text-center font-semibold">
                 Service Bookings Dashboard
               </h2>
-              <div className="lg:w-3/5 text-sm flex flex-col mx-auto text-center mt-1 mb-7">
+              <div className="lg:w-3/5 text-sm flex flex-col mx-auto text-center mt-1">
                 <p className=" text-gray">
                   Track, Update, and Review Your Customer Bookings Effortlessly.
                 </p>
               </div>
               {/* <div className="h-1 w-16 bg-orange-600 flex mx-auto mb-16 mt-2"></div> */}
-              <div className="overflow-x-auto overflow-y-hidden">
+              <div className="overflow-x-auto overflow-y-hidden pt-12 pb-16">
                 <table className="table">
                   {/* head */}
                   <thead>
@@ -85,6 +107,7 @@ const ToDoServices = () => {
                         idx={idx}
                         key={todoService._id}
                         todoService={todoService}
+                        handleStatus={handleStatus}
                         handleRemoveTodoService={handleRemoveTodoService}
                       />
                     ))}
