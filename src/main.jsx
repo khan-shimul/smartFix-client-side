@@ -6,8 +6,10 @@ import { Router } from "./Router/Router.jsx";
 import AuthProvider from "./Providers/AuthProvider.jsx";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import axios from "axios";
 
 const queryClient = new QueryClient();
+axios.defaults.withCredentials = true;
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

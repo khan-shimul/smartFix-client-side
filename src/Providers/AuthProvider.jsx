@@ -12,6 +12,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import axios from "axios";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -54,6 +55,16 @@ const AuthProvider = ({ children }) => {
       console.log("Observing the current user", currentUser);
       setUser(currentUser);
       setLoading(false);
+      const user = { email: currentUser?.email };
+      if (currentUser) {
+        axios.post("http://localhost:5000/jwt", user).then((res) => {
+          console.log(res.data);
+        });
+      } else {
+        axios.post("http://localhost:5000/logout", user).then((res) => {
+          console.log(res.data);
+        });
+      }
     });
     return () => {
       return unSubscribe();
