@@ -51,7 +51,14 @@ const TodoService = ({
           <ul className="menu menu-horizontal px-1">
             <li>
               <details>
-                <summary className="capitalize">{status}</summary>
+                <summary
+                  className={`capitalize 
+                  ${status === "pending" && "text-gray"} 
+                  ${status === "working" && "text-[#2876db]"}
+                  ${status === "completed" && "text-orange"}`}
+                >
+                  {status}
+                </summary>
                 <ul className="p-2 z-20">
                   <li className="z-50">
                     <button onClick={() => handleStatus("working", `${_id}`)}>

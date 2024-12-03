@@ -39,7 +39,14 @@ const BookingService = ({ bookingService, idx }) => {
           </div>
         </div>
       </td>
-      <td className="capitalize text-orange font-semibold">{status}</td>
+      <td
+        className={`capitalize text-gray font-semibold
+                  ${status === "pending" && "text-gray"} 
+                  ${status === "working" && "text-[#2876db]"}
+                  ${status === "completed" && "text-orange"}`}
+      >
+        {status}
+      </td>
     </tr>
   );
 };

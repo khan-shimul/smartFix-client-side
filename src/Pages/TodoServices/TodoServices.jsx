@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import PageHeader from "../Shared/PageHeader/PageHeader";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
@@ -8,8 +8,11 @@ import swal from "sweetalert";
 
 const ToDoServices = () => {
   const { user } = useAuth();
-  const queryClient = useQueryClient();
-  const { isPending, data: todoServices } = useQuery({
+  const {
+    isPending,
+    data: todoServices,
+    refetch,
+  } = useQuery({
     queryKey: ["todoServices"],
     queryFn: async () => {
       const response = await axios.get(
@@ -28,44 +31,37 @@ const ToDoServices = () => {
     );
     if (response.data.modifiedCount) {
       swal("Todo-Task", "Successfully modified", "success");
-      queryClient.setQueryData(["todoServices"], (previousTodoServices) => {
-        const remaining = previousTodoServices.filter(
-          (item) => item._id !== id
-        );
-        const currentService = previousTodoServices.find(
-          (item) => item._id === id
-        );
-        currentService.status = status;
-        const newTodoServices = [...remaining, currentService];
-        // console.log(newTodoServices);
-        return newTodoServices;
-      });
+      refetch();
     }
   };
   // Booking Service Remove Handler
-  const handleRemoveTodoService = async (id) => {
-    const response = await axios.delete(
-      `http://localhost:5000/service-to-do/${id}`
-    );
-    if (response.data.deletedCount) {
-      swal(
-        "Service Successfully Removed",
-        "The selected service has been removed from your dashboard.",
-        "success"
-      );
-      //   Set new todo services
-      queryClient.setQueryData(["todoServices"], (previousTodoServices) => {
-        const remaining = previousTodoServices.filter(
-          (todoService) => todoService._id !== id
+  const handleRemoveTodoService = (id) => {
+    swal({
+      title: "Are you sure you?",
+      text: "This action is permanent and cannot be undone.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        const response = await axios.delete(
+          `http://localhost:5000/service-to-do/${id}`
         );
-        return remaining;
-      });
-    }
+        if (response.data.deletedCount) {
+          swal(
+            "Service Successfully Removed",
+            "The selected service has been removed from your dashboard.",
+            "success"
+          );
+          refetch();
+        }
+      }
+    });
   };
   return (
     <div className="bg-gray-50">
       <PageHeader>Service To-Do</PageHeader>
-      <section className="max-w-7xl mx-auto">
+      <section className="max-w-7xl mx-auto min-h-screen">
         <div className="mt-12 px-5 md:px-10">
           {!todoServices.length ? (
             <>

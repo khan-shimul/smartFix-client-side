@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import PageHeader from "../Shared/PageHeader/PageHeader";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
@@ -9,12 +9,12 @@ import swal from "sweetalert";
 
 const ManageService = () => {
   const { user } = useAuth();
-  const queryClient = useQueryClient();
   // Fetch data using query
   const {
     isPending,
     error,
     data: services,
+    refetch,
   } = useQuery({
     queryKey: ["manageService"],
     queryFn: async () => {
@@ -41,18 +41,10 @@ const ManageService = () => {
           .delete(`http://localhost:5000/service/${id}`)
           .then((response) => {
             if (response.data.deletedCount) {
-              queryClient.setQueryData(
-                ["manageService"],
-                (previousServices) => {
-                  const remaining = previousServices.filter(
-                    (service) => service._id !== id
-                  );
-                  return remaining;
-                }
-              );
               swal("Your service has been deleted", {
                 icon: "success",
               });
+              refetch();
             }
           })
           .catch((error) => toast.error(error));
