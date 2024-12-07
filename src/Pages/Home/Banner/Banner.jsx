@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 // Import Custom Animation Styles
 import "./style.css";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const images = [img_1, img_2, img_3];
@@ -62,7 +63,9 @@ const Banner = () => {
             the electronics have suffered alteration electronics repair, by
             injected humour.
           </p>
-          <ButtonOrange>Our Services</ButtonOrange>
+          <Link to="/services">
+            <ButtonOrange>Our Services</ButtonOrange>
+          </Link>
         </div>
       </div>
     </div>
