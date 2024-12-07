@@ -6,6 +6,7 @@ import Spinner from "../Shared/Spinner/Spinner";
 import ManageServiceCard from "./ManageServiceCard";
 import toast from "react-hot-toast";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet-async";
 
 const ManageService = () => {
   const { user } = useAuth();
@@ -53,6 +54,9 @@ const ManageService = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>SmartFix | Manage Service</title>
+      </Helmet>
       <PageHeader>Manage Service</PageHeader>
       <div>
         <div className="max-w-7xl mx-auto py-14 px-5 md:pl-8">

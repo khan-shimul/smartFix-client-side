@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import ButtonOrange from "../Shared/ButtonOrange/ButtonOrange";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Services = () => {
   const { register, handleSubmit } = useForm();
@@ -43,6 +44,9 @@ const Services = () => {
 
   return (
     <section className="min-h-screen bg-gray-50">
+      <Helmet>
+        <title>SmartFix | Services</title>
+      </Helmet>
       <PageHeader>Services</PageHeader>
       <div className="max-w-7xl mx-auto py-14 px-5 md:px-7">
         <div className="mb-10 flex flex-col md:flex-row-reverse items-center">

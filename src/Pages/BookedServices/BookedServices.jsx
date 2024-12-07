@@ -6,6 +6,7 @@ import Spinner from "../Shared/Spinner/Spinner";
 import { Link } from "react-router-dom";
 import ButtonOrange from "../Shared/ButtonOrange/ButtonOrange";
 import BookingService from "./BookingService";
+import { Helmet } from "react-helmet-async";
 
 const BookedServices = () => {
   const { user } = useAuth();
@@ -28,6 +29,9 @@ const BookedServices = () => {
 
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>SmartFix | Booking Service</title>
+      </Helmet>
       <PageHeader>Booked Service</PageHeader>
       <section className="max-w-7xl mx-auto min-h-screen">
         <div className="my-14 px-5 md:px-10">

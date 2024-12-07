@@ -12,7 +12,7 @@ const PopularServiceCard = ({ service }) => {
     price,
   } = service;
   return (
-    <div className="card rounded-none bg-base-100 shadow-xl">
+    <div className="card rounded-none bg-base-100 dark:bg-[#101013] shadow-xl">
       <div className="relative">
         <Link to={`/service-details/${_id}`}>
           <figure className="border-2 border-orange-600">
@@ -24,7 +24,7 @@ const PopularServiceCard = ({ service }) => {
           </figure>
         </Link>
         <div className="w-full absolute -bottom-6 flex justify-center">
-          <h2 className="w-2/3 bg-gray-100 text-center p-4 font-semibold text-blueDark">
+          <h2 className="w-2/3 bg-gray-100 dark:bg-[#0b0b0e] dark:text-white text-center p-4 font-semibold text-blueDark">
             {serviceName}
           </h2>
         </div>
@@ -39,15 +39,19 @@ const PopularServiceCard = ({ service }) => {
             />
             <div>
               <p className="text-sm text-orange">Service Provider</p>
-              <p className="text-blueDark font-medium">{providerName}</p>
+              <p className="text-blueDark dark:text-white font-medium">
+                {providerName}
+              </p>
             </div>
           </div>
           <div className="">
             <h6 className="text-sm text-orange">Price</h6>
-            <h5 className="text-blueDark font-medium">${price}</h5>
+            <h5 className="text-blueDark dark:text-white font-medium">
+              ${price}
+            </h5>
           </div>
         </div>
-        <p className="text-gray text-sm leading-6">
+        <p className="text-gray dark:text-white text-sm leading-6">
           {description.slice(0, 100)}...{" "}
           <span className="cursor-pointer text-orange font-semibold ml-1 btn-link">
             <Link to={`/service-details/${_id}`}>View Details</Link>

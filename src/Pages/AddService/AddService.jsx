@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useState } from "react";
 import ModalFeedback from "../Shared/ModalFeedback/ModalFeedback";
+import { Helmet } from "react-helmet-async";
 
 const AddService = () => {
   const { register, handleSubmit } = useForm();
@@ -45,6 +46,9 @@ const AddService = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Helmet>
+        <title>SmartFix | Add Service</title>
+      </Helmet>
       <PageHeader>Add Service</PageHeader>
       <section className="max-w-7xl mx-auto pt-14 pb-14">
         <div>

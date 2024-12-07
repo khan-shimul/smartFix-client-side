@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import Spinner from "../Shared/Spinner/Spinner";
 import TodoService from "./TodoService";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet-async";
 
 const ToDoServices = () => {
   const { user } = useAuth();
@@ -60,6 +61,9 @@ const ToDoServices = () => {
   };
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>SmartFix | To-Do Service</title>
+      </Helmet>
       <PageHeader>Service To-Do</PageHeader>
       <section className="max-w-7xl mx-auto min-h-screen">
         <div className="mt-12 px-5 md:px-10">

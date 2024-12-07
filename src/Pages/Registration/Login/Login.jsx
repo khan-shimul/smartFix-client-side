@@ -11,6 +11,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -51,6 +52,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>SmartFix | Login</title>
+      </Helmet>
       <div className="flex flex-col lg:flex-row-reverse gap-0 lg:gap-6">
         <div className="bg-gradient-to-t from-[#FF6635] from-40% to-[#FF8A53] flex flex-col justify-center items-center lg:w-1/2 ">
           <div className="p-10 text-center text-white lg:-mt-36">

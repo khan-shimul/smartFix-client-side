@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,11 +32,11 @@ const Register = () => {
     if (password !== confirmPassword) {
       return toast.error("Password and confirm password does not match");
     }
-    // if (!passwordRegex.test(password)) {
-    //   return toast.error(
-    //     "Password should have at least 8 character, one upper case and one special character"
-    //   );
-    // }
+    if (!passwordRegex.test(password)) {
+      return toast.error(
+        "Password should have at least 8 character, one upper case and one special character"
+      );
+    }
     registerUser(email, password)
       .then((res) => {
         if (res.user) {
@@ -54,6 +55,9 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>SmartFix | Registration</title>
+      </Helmet>
       <div className="flex flex-col lg:flex-row-reverse gap-0 lg:gap-6">
         <div className="bg-gradient-to-t from-[#FF6635] from-40% to-[#FF8A53] flex flex-col justify-center items-center lg:w-1/2 ">
           <div className="p-10 text-center text-white lg:-mt-52">
