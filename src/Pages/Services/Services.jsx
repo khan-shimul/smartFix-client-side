@@ -6,10 +6,12 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import ButtonOrange from "../Shared/ButtonOrange/ButtonOrange";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const Services = () => {
   const { register, handleSubmit } = useForm();
   const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
   const {
     isPending,
     error,
@@ -23,15 +25,17 @@ const Services = () => {
   });
   // Search Handler
   const handleSearch = async (data) => {
+    setLoading(true);
     const response = await axios.get(
       `http://localhost:5000/services?search=${data.searchText}`
     );
     queryClient.setQueryData(["services"], () => {
+      setLoading(false);
       return response.data;
     });
   };
   // Showing a spinner until data received
-  if (isPending) return <Spinner />;
+  if (isPending || loading) return <Spinner />;
   if (error) {
     toast.error("Something went wrong:", error.message);
     return <Spinner />;
