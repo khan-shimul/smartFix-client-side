@@ -21,10 +21,10 @@ const Faq = () => {
           <div className="join join-vertical w-full">
             <div className="collapse collapse-arrow join-item border-base-300 border">
               <input type="radio" name="my-accordion-4" defaultChecked />
-              <div className="collapse-title text-xl font-medium">
+              <div className="collapse-title text-xl font-medium text-blueDark">
                 How does Smart Fix work?
               </div>
-              <div className="collapse-content">
+              <div className="collapse-content text-gray">
                 <p>
                   Simply create an account, select the type of device you need
                   repaired, describe the issue, and schedule a service. Our
@@ -34,10 +34,10 @@ const Faq = () => {
             </div>
             <div className="collapse collapse-arrow join-item border-base-300 border">
               <input type="radio" name="my-accordion-4" />
-              <div className="collapse-title text-xl font-medium">
+              <div className="collapse-title text-xl font-medium text-blueDark">
                 What types of devices do you repair?
               </div>
-              <div className="collapse-content">
+              <div className="collapse-content text-gray">
                 <p>
                   We repair a wide range of electronics, including smartphones,
                   tablets, laptops, desktop computers, gaming consoles, and
@@ -47,10 +47,10 @@ const Faq = () => {
             </div>
             <div className="collapse collapse-arrow join-item border-base-300 border">
               <input type="radio" name="my-accordion-4" />
-              <div className="collapse-title text-xl font-medium">
+              <div className="collapse-title text-xl font-medium text-blueDark">
                 How much will my repair cost?
               </div>
-              <div className="collapse-content">
+              <div className="collapse-content text-gray">
                 <p>
                   Repair costs vary based on the device and issue. Use our app’s
                   instant quote feature for an estimate tailored to your needs.
@@ -59,10 +59,10 @@ const Faq = () => {
             </div>
             <div className="collapse collapse-arrow join-item border-base-300 border">
               <input type="radio" name="my-accordion-4" />
-              <div className="collapse-title text-xl font-medium">
+              <div className="collapse-title text-xl font-medium text-blueDark">
                 Do you offer a warranty on repairs?
               </div>
-              <div className="collapse-content">
+              <div className="collapse-content text-gray">
                 <p>
                   Yes, all repairs come with a 90-day warranty covering parts
                   and workmanship for your peace of mind.
@@ -71,10 +71,10 @@ const Faq = () => {
             </div>
             <div className="collapse collapse-arrow join-item border-base-300 border">
               <input type="radio" name="my-accordion-4" />
-              <div className="collapse-title text-xl font-medium">
+              <div className="collapse-title text-xl font-medium text-blueDark">
                 Can I track the progress of my repair?
               </div>
-              <div className="collapse-content">
+              <div className="collapse-content text-gray">
                 <p>
                   Absolutely! Smart Fix provides real-time updates, so you can
                   track every step of your repair process through the app.
@@ -83,10 +83,10 @@ const Faq = () => {
             </div>
             <div className="collapse collapse-arrow join-item border-base-300 border">
               <input type="radio" name="my-accordion-4" />
-              <div className="collapse-title text-xl font-medium">
+              <div className="collapse-title text-xl font-medium text-blueDark">
                 How long does a repair typically take?
               </div>
-              <div className="collapse-content">
+              <div className="collapse-content text-gray">
                 <p>
                   Most repairs are completed within 24–48 hours. For common
                   issues like screen replacements, it’s often faster.
