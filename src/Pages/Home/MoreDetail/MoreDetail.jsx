@@ -17,7 +17,7 @@ const MoreDetail = () => {
           <h4 className="text-orange text-lg font-medium uppercase">
             More Hight Detail
           </h4>
-          <h2 className="text-blueDark font-bold text-5xl leading-tight">
+          <h2 className="text-blueDark font-bold text-3xl md:text-5xl leading-tight">
             We Have Best Hiring Team Professional Electronic
           </h2>
           <div>
