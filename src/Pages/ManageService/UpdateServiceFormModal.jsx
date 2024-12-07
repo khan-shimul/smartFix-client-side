@@ -16,7 +16,7 @@ const UpdateServiceFormModal = ({ isOpen, setIsOpen, manageService }) => {
     const updateService = data;
     try {
       const response = await axios.patch(
-        `http://localhost:5000/update-service/${_id}`,
+        `https://smart-fix-server-side.vercel.app/update-service/${_id}`,
         updateService
       );
       if (response.data.modifiedCount) {

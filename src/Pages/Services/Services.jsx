@@ -20,7 +20,9 @@ const Services = () => {
   } = useQuery({
     queryKey: ["services"],
     queryFn: async () => {
-      const result = await axios.get(`http://localhost:5000/services`);
+      const result = await axios.get(
+        `https://smart-fix-server-side.vercel.app/services`
+      );
       return result.data;
     },
   });
@@ -28,7 +30,7 @@ const Services = () => {
   const handleSearch = async (data) => {
     setLoading(true);
     const response = await axios.get(
-      `http://localhost:5000/services?search=${data.searchText}`
+      `https://smart-fix-server-side.vercel.app/services?search=${data.searchText}`
     );
     queryClient.setQueryData(["services"], () => {
       setLoading(false);

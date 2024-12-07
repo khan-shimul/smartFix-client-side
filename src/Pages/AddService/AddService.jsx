@@ -21,7 +21,7 @@ const AddService = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5000/service",
+        "https://smart-fix-server-side.vercel.app/service",
         service
       );
       if (response.data.insertedId) {

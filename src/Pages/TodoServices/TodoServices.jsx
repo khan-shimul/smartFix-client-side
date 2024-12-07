@@ -17,7 +17,7 @@ const ToDoServices = () => {
     queryKey: ["todoServices"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/services-to-do?email=${user.email}`
+        `https://smart-fix-server-side.vercel.app/services-to-do?email=${user.email}`
       );
       return response.data;
     },
@@ -27,7 +27,7 @@ const ToDoServices = () => {
   const handleStatus = async (status, id) => {
     const newStatus = { status };
     const response = await axios.patch(
-      `http://localhost:5000/services-to-do/${id}`,
+      `https://smart-fix-server-side.vercel.app/services-to-do/${id}`,
       newStatus
     );
     if (response.data.modifiedCount) {
@@ -46,7 +46,7 @@ const ToDoServices = () => {
     }).then(async (willDelete) => {
       if (willDelete) {
         const response = await axios.delete(
-          `http://localhost:5000/service-to-do/${id}`
+          `https://smart-fix-server-side.vercel.app/service-to-do/${id}`
         );
         if (response.data.deletedCount) {
           swal(

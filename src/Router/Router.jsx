@@ -21,7 +21,8 @@ export const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch("https://smart-fix-server-side.vercel.app/services"),
       },
       {
         path: "/services",
@@ -35,7 +36,9 @@ export const Router = createBrowserRouter([
           </ProtectRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/service/${params.id}`),
+          fetch(
+            `https://smart-fix-server-side.vercel.app/service/${params.id}`
+          ),
       },
       {
         path: "/add-service",

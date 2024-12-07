@@ -31,7 +31,7 @@ const ServiceDetails = () => {
     };
     // Booked service send to server
     const response = await axios.post(
-      "http://localhost:5000/booking-service",
+      "https://smart-fix-server-side.vercel.app/booking-service",
       bookingService
     );
     if (response.data.insertedId) {

@@ -21,7 +21,9 @@ const ManageServiceCard = ({ service, handleDeleteService }) => {
   //   Service Update Handler
   const handleLoadService = async (id) => {
     setIsOpen(true);
-    const response = await axios.get(`http://localhost:5000/service/${id}`);
+    const response = await axios.get(
+      `https://smart-fix-server-side.vercel.app/service/${id}`
+    );
     setManageService(response.data);
   };
 

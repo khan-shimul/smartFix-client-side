@@ -20,7 +20,7 @@ const ManageService = () => {
     queryKey: ["manageService"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/manage-service?email=${user.email}`
+        `https://smart-fix-server-side.vercel.app/manage-service?email=${user.email}`
       );
       return response.data;
     },
@@ -39,7 +39,7 @@ const ManageService = () => {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`http://localhost:5000/service/${id}`)
+          .delete(`https://smart-fix-server-side.vercel.app/service/${id}`)
           .then((response) => {
             if (response.data.deletedCount) {
               swal("Your service has been deleted", {

@@ -18,7 +18,7 @@ const BookedServices = () => {
     queryKey: ["bookingServices"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/booking-services?email=${user.email}`
+        `https://smart-fix-server-side.vercel.app/booking-services?email=${user.email}`
       );
       return response.data;
     },

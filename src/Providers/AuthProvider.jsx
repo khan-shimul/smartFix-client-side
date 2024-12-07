@@ -57,13 +57,17 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       const user = { email: currentUser?.email };
       if (currentUser) {
-        axios.post("http://localhost:5000/jwt", user).then((res) => {
-          console.log(res.data);
-        });
+        axios
+          .post("https://smart-fix-server-side.vercel.app/jwt", user)
+          .then((res) => {
+            console.log(res.data);
+          });
       } else {
-        axios.post("http://localhost:5000/logout", user).then((res) => {
-          console.log(res.data);
-        });
+        axios
+          .post("https://smart-fix-server-side.vercel.app/logout", user)
+          .then((res) => {
+            console.log(res.data);
+          });
       }
     });
     return () => {
